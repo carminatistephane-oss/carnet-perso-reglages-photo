@@ -205,14 +205,15 @@
 <body>
 
 <div id="accueil">
+    <button id="install-banner" style="display: none; margin: 10px auto 0 auto; padding: 12px 24px; background: #2C3E50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        📲 Installer l'application
+    </button>
     <div class="header">
         <div class="boitier-logo"></div>
         <h1>RÉGLAGES<br>PERSO</h1>
     </div>
 
-    <div id="install-banner" style="display: none; background-color: #2C3E50; color: white; text-align: center; padding: 15px; cursor: pointer; font-weight: bold; width: 100%; box-sizing: border-box; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        📲 Installer l'application Mes Réglages
-    </div>
+    
     <div style="margin: 0 auto 40px auto; max-width: 600px; padding: 0 10px;">
         <div id="c-modes-container" class="c-modes-container"></div>
         <button id="btn-gerer-c" class="btn-gerer-filtres" style="display: block; margin: 15px auto 0 auto;" onclick="ouvrirGestionC()">
@@ -543,7 +544,7 @@
     };
     
     try {
-        const versionPC = "1790281175";
+        const versionPC = "1790281176";
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
