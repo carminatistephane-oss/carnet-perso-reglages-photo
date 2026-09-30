@@ -1,15 +1,15 @@
 // ATTENTION : À chaque fois que tu modifies ton code HTML/CSS/JS, 
 // tu DOIS changer ce nom (ex: passer à 'r6-carnet-v6' puis v7, etc.)
 // Sinon, les téléphones garderont l'ancienne version en mémoire !
-const CACHE_NAME = 'r6-carnet-v10'; 
+const CACHE_NAME = 'r6-carnet-v11'; 
 
 // On ajoute les icônes locales pour qu'elles soient dispo hors-ligne
 const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
+  './icn-192.png',
+  './icn-512.png'
 ];
 
 // 1. Étape d'installation : On télécharge tout et on met en cache
