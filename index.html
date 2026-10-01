@@ -644,7 +644,7 @@
     };
     
     try {
-        const versionPC = "1790281186";
+        const versionPC = "1790281187";
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -1574,7 +1574,7 @@ function creerNouveauFiltre() {
         element.style.borderColor = '#2C3E50';
     }
 
-    function creerNouveauThemeModal() {
+function creerNouveauThemeModal() {
     let inputNom = document.getElementById('new-theme-nom');
     let nom = inputNom.value.trim();
     if(!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
@@ -1610,8 +1610,13 @@ function creerNouveauFiltre() {
     
     try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
     
-    rafraichirListeGestionThemes();
-    chargerThemesGlobaux();
+    // Rafraîchir l'affichage de la modale et des thèmes globaux
+    if (typeof ouvrirGestionThemes === 'function') {
+        ouvrirGestionThemes();
+    }
+    if (typeof chargerThemesGlobaux === 'function') {
+        chargerThemesGlobaux();
+    }
 }
 
     function supprimerTheme(id, nom) {
