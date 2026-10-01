@@ -6,6 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Mes Reglages Perso</title>
     <link rel="manifest" href="/carnet-perso-reglages-photo/manifest.json">
+
+    <link rel="apple-touch-icon" href="icn-192.png">
     
     <script>
         if ('serviceWorker' in navigator) {
@@ -644,7 +646,7 @@
     };
     
     try {
-        const versionPC = "1790281193"
+        const versionPC = "179028119"
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
