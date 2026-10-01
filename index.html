@@ -200,6 +200,13 @@
 
         .slide-in { transform: translateX(0) !important; }
         .slide-out { transform: translateX(-30%) !important; opacity: 0.5; }
+
+#gestion-theme-modal {
+    padding: 40px 15px !important;
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+}
+
     </style>
 </head>
 <body>
@@ -296,6 +303,96 @@
         <div class="modal-actions">
             <button class="btn-modal-cancel" style="flex: 1;" onclick="fermerGestionC()">Annuler</button>
             <button class="btn-modal-save" style="flex: 2;" onclick="sauvegarderGestionC()">Enregistrer</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL GESTION DES THEMES -->
+<div id="gestion-theme-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-title">⚙️ Gestion des Thèmes</div>
+        
+        <div style="background: rgba(0,0,0,0.03); padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #E5D8CD;">
+            <h4 style="margin: 0 0 10px 0; color: #2C3E50;">Nouveau Thème</h4>
+            <div style="margin-top: 15px;">
+                <label style="font-size: 12px; color: #2C3E50; font-weight: bold;">Choisir une icône :</label>
+                <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; justify-content: flex-start; max-height: 130px; overflow-y: auto; background: rgba(255,255,255,0.7); padding: 8px; border-radius: 8px; border: 1px solid #E5D8CD;">
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid #2C3E50; border-radius:6px;" onclick="choisirEmojiTheme(this, '📁')">📁</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '☀️')">☀️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '❓')">❓</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌤️')">🌤️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '⛅')">⛅</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌧️')">🌧️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌅')">🌅</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '❄️')">❄️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '⛄')">⛄</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '💧')">💧</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌊')">🌊</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌙')">🌙</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌗')">🌗</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌌')">🌌</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '✨')">✨</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🔥')">🔥</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎇')">🎇</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🧨')">🧨</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '💡')">💡</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🔦')">🔦</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '⛱️')">⛱️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏝️')">🏝️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏕️')">🏕️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏞️')">🏞️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌲')">🌲</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌳')">🌳</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🍁')">🍁</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🍄')">🍄</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌷')">🌷</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🌻')">🌻</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🐈')">🐈</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🐱')">🐱</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🐘')">🐘</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🦄')">🦄</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🧍')">🧍</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '👕')">👕</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🦉')">🦉</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🦋')">🦋</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🐞')">🐞</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🐾')">🐾</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏃')">🏃</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🚴')">🚴</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '⛷️')">⛷️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏎️')">🏎️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏍️')">🏍️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '✈️️')">✈️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏀')">🏀</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '📷')">📷</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎞️')">🎞️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎥')">🎥</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎭')">🎭</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎉')">🎉</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '💁')">💁</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '💑')">💑</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '👶')">👶</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🏠')">🏠</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎂')">🎂</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '⏱️')">⏱️</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🔍')">🔍</span>
+                    <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎡')">🎡</span>
+                </div>
+                <!-- Case cachée pour la sauvegarde -->
+                <input type="hidden" id="new-theme-emoji-hidden" value="📁">
+            </div>
+            <div style="margin-top: 15px; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="new-theme-hide" style="width: 18px; height: 18px; cursor: pointer;">
+                <label style="font-size: 12px; color: #2C3E50; font-weight: bold; margin: 0; cursor: pointer;" onclick="document.getElementById('new-theme-hide').click()">Masquer de l'accueil</label>
+            </div>
+            <button onclick="creerNouveauThemeModal()" style="width: 100%; background: #2C3E50; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">+ Ajouter ce thème</button>
+        </div>
+
+        <h4 style="margin: 0 0 10px 0; color: #2C3E50;">Thèmes existants</h4>
+        <div id="gestion-liste-themes" style="max-height: 250px; overflow-y: auto; padding-right: 5px;"></div>
+
+        <div class="modal-actions">
+            <button class="btn-modal-cancel" style="width: 100%;" onclick="fermerGestionThemes()">Fermer</button>
         </div>
     </div>
 </div>
@@ -544,7 +641,7 @@
     };
     
     try {
-        const versionPC = "1790281180";
+        const versionPC = "1790281182";
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -629,7 +726,7 @@
         const cContainer = document.getElementById('c-modes-container');
         cContainer.innerHTML = '';
         
-        (appData.c_modes || []).filter(m => m.actif).forEach(mode => {
+        (appData.c_modes || []).filter(m => m.actif && !m.masqueAccueil).forEach(mode => {
             let nomMode = mode.nom ? mode.nom : "";
             const safeNom = mode.id.toUpperCase() + " " + nomMode.replace(/'/g, "\\'").replace(/"/g, "&quot;");
             cContainer.innerHTML += `
@@ -643,9 +740,9 @@
         const conteneurThemes = document.getElementById('liste-themes');
         conteneurThemes.innerHTML = '';
         
-        let themesToRender = (appData.themes || []).filter(t => !['c1','c2','c3','c4','timelapse'].includes(t.id));
+        let themesToRender = (appData.themes || []).filter(t => !['c1','c2','c3','c4','timelapse'].includes(t.id) && !t.masqueAccueil);
         let themeTimelapse = (appData.themes || []).find(t => t.id === 'timelapse');
-        if (themeTimelapse) themesToRender.push(themeTimelapse);
+        if (themeTimelapse && !themeTimelapse.masqueAccueil) themesToRender.push(themeTimelapse);
 
         const mapIntense = {"#FFE082":"#FFB300","#CFD8DC":"#90A4AE","#FFCCBC":"#FF8A65","#B3E5FC":"#4FC3F7","#B2DFDB":"#4DB6AC","#E1BEE7":"#BA68C8","#F8BBD0":"#F06292","#C8E6C9":"#81C784","#FFF59D":"#FDD835","#FFCC80":"#FF9800","#C5CAE9":"#7986CB","#DCEDC8":"#AED581"};
 
@@ -669,7 +766,7 @@
                 </div>`; 
         });
 
-        conteneurThemes.innerHTML += `<button class="btn-theme btn-add" style="background: rgba(255,255,255,0.6);" onclick="ajouterTheme()">+ NOUVEAU THÈME</button>`;
+        conteneurThemes.innerHTML += `<button class="btn-theme btn-add" style="background: rgba(255,255,255,0.6);" onclick="ouvrirGestionThemes()">⚙️ Gérer les Thèmes</button>`;
         chargerFiltresGlobaux();
     }
 
@@ -678,11 +775,16 @@
         list.innerHTML = '';
         (appData.c_modes || []).forEach(mode => {
             let nomMode = mode.nom ? mode.nom : "";
+            let isHidden = mode.masqueAccueil ? 'checked' : '';
             list.innerHTML += `
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; background: #fff; padding: 10px; border-radius: 10px; border: 1px solid #E5D8CD;">
-                    <input type="checkbox" id="c-enable-${mode.id}" ${mode.actif ? 'checked' : ''} style="width: 22px; height: 22px; cursor: pointer;">
+                    <input type="checkbox" id="c-enable-${mode.id}" ${mode.actif ? 'checked' : ''} style="width: 22px; height: 22px; cursor: pointer;" title="Activer ou désactiver">
                     <span style="font-weight: 900; color: #2C3E50; width: 30px; font-size: 16px;">${mode.id.toUpperCase()}</span>
                     <input type="text" id="c-name-${mode.id}" value="${nomMode}" placeholder="Nom du mode" style="flex: 1; border: 1px solid #E5D8CD; border-radius: 6px; padding: 10px; font-weight: bold; color: #2C3E50; font-size: 14px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-left: 2px;">
+                        <input type="checkbox" id="c-hide-${mode.id}" ${isHidden} style="width: 18px; height: 18px; cursor: pointer;">
+                        <label style="font-size: 9px; color: #7F8C8D; margin-top:2px;">Masquer</label>
+                    </div>
                 </div>
             `;
         });
@@ -704,17 +806,19 @@
                 let mode = appData.c_modes[i];
                 let cb = document.getElementById('c-enable-' + mode.id);
                 let txt = document.getElementById('c-name-' + mode.id);
+                let hideCb = document.getElementById('c-hide-' + mode.id);
                 if (!cb || !txt) continue;
 
                 let isChecked = cb.checked;
                 let newName = txt.value.trim();
+                let isHidden = hideCb ? hideCb.checked : false;
                 
                 if (isChecked && !newName) {
                     alert("Veuillez donner un nom au mode " + mode.id.toUpperCase());
                     return;
                 }
                 if (mode.actif && !isChecked) hasDeletions = true;
-                tempState.push({ id: mode.id, nom: newName, actif: isChecked });
+                tempState.push({ id: mode.id, nom: newName, actif: isChecked, masqueAccueil: isHidden });
             }
 
             if (hasDeletions) {
@@ -730,6 +834,7 @@
                 let wasActive = modeObj.actif;
                 modeObj.actif = newState.actif;
                 modeObj.nom = newState.nom;
+                modeObj.masqueAccueil = newState.masqueAccueil;
 
                 let themeId = modeObj.id;
                 let fullThemeName = themeId.toUpperCase() + " " + modeObj.nom;
@@ -739,7 +844,7 @@
                     if (existingTheme) {
                         existingTheme.nom = fullThemeName;
                     } else {
-                        let defaultEmoji = (typeof defaultEmojis !== 'undefined' && defaultEmojis[themeId]) ? defaultEmojis[themeId] : '⚙️';
+                        let defaultEmoji = (typeof defaultEmojis !== 'undefined' && defaultEmojis[themeId]) ? defaultEmojis[themeId] : '⚙';
                         appData.themes.unshift({ id: themeId, nom: fullThemeName, couleur: '#FFFFFF', emoji: defaultEmoji });
                     }
                     
@@ -1363,27 +1468,154 @@
         }
     }
         
-    function ajouterTheme() {
-        try {
-            let nom = prompt("Entrez le nom du nouveau thème :");
-            if (!nom || nom.trim() === "") return; 
+    function ouvrirGestionThemes() {
+        rafraichirListeGestionThemes();
+        document.getElementById('gestion-theme-modal').style.display = 'flex';
+    }
 
-            let newId = "theme_" + Date.now(); 
-            let couleurs = ["#F8BBD0", "#FFCCBC", "#FFE082", "#CFD8DC", "#C8E6C9", "#B3E5FC", "#E1BEE7", "#FFF59D", "#FFCC80", "#C5CAE9", "#B2DFDB", "#DCEDC8"];
-            let randomColor = couleurs[Math.floor(Math.random() * couleurs.length)];
+    function fermerGestionThemes() {
+        document.getElementById('gestion-theme-modal').style.display = 'none';
+    }
 
-            appData.themes.push({ 
-                id: newId, 
-                nom: nom.trim(), 
-                couleur: randomColor, 
-                emoji: "📁" 
-            });
+    function rafraichirListeGestionThemes() {
+        const liste = document.getElementById('gestion-liste-themes');
+        liste.innerHTML = '';
+        
+        let customThemes = (appData.themes || []).filter(t => !['c1','c2','c3','c4','timelapse'].includes(t.id));
+        let themeTimelapse = (appData.themes || []).find(t => t.id === 'timelapse');
+        if (themeTimelapse) customThemes.push(themeTimelapse);
 
+        customThemes.forEach((theme, index) => {
+            const safeNom = theme.nom.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+            let opacite = theme.masqueAccueil ? '0.6' : '1';
+            let oeil = theme.masqueAccueil ? '🙈' : '👁️';
+            let oeilTitle = theme.masqueAccueil ? 'Afficher sur l\'accueil' : 'Masquer sur l\'accueil';
+
+            // Verrouillage du thème Timelapse tout en bas
+            let isTimelapse = (theme.id === 'timelapse');
+            let isNextTimelapse = (index < customThemes.length - 1 && customThemes[index+1].id === 'timelapse');
+
+            let btnHaut = (index > 0 && !isTimelapse) ? `<button style="background:rgba(0,0,0,0.05); border:1px solid #E5D8CD; border-radius:6px; padding:4px 8px; cursor:pointer;" onclick="deplacerTheme('${theme.id}', -1)" title="Monter">⬆️</button>` : `<div style="width:34px;"></div>`;
+            let btnBas = (index < customThemes.length - 1 && !isTimelapse && !isNextTimelapse) ? `<button style="background:rgba(0,0,0,0.05); border:1px solid #E5D8CD; border-radius:6px; padding:4px 8px; cursor:pointer;" onclick="deplacerTheme('${theme.id}', 1)" title="Descendre">⬇️</button>` : `<div style="width:34px;"></div>`;
+
+            // Récupération de l'emoji du thème ou dossier par défaut
+            let themeEmoji = theme.emoji ? theme.emoji : '📁';
+
+            liste.innerHTML += `
+                <div class="gestion-item" style="opacity: ${opacite}; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; background:#fff; padding:10px; border-radius:10px; border:1px solid #E5D8CD;">
+                   <div style="font-weight:bold; color:#2C3E50; display:flex; align-items:center; gap:6px; flex: 1; min-width: 0; font-size: 13px;">
+            <span>${themeEmoji}</span>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${theme.nom}${theme.masqueAccueil ? ' <i style="font-size:10px; color:#7F8C8D; font-weight:normal;">(Masqué)</i>' : ''}</span>
+        </div>
+                    <div style="display:flex; gap:6px; align-items:center; margin-left: auto;">
+                        ${btnHaut}
+                        ${btnBas}
+                        <button style="background:rgba(0,0,0,0.05); color:#2C3E50; border:1px solid #E5D8CD; border-radius:6px; padding:4px 8px; cursor:pointer; margin-left:5px;" onclick="toggleThemeVisibilite('${theme.id}')" title="${oeilTitle}">${oeil}</button>
+                        <button style="background:#e74c3c; color:#fff; border:none; border-radius:6px; padding:4px 7px; font-weight:bold; cursor:pointer; font-size:11px;" onclick="supprimerTheme('${theme.id}', '${safeNom}')">🗑️</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function deplacerTheme(id, direction) {
+        let customThemes = (appData.themes || []).filter(t => !['c1','c2','c3','c4','timelapse'].includes(t.id));
+        let themeTimelapse = (appData.themes || []).find(t => t.id === 'timelapse');
+        if (themeTimelapse) customThemes.push(themeTimelapse);
+
+        let indexVisuel = customThemes.findIndex(t => t.id === id);
+        if (indexVisuel < 0) return;
+
+        let indexCible = indexVisuel + direction;
+        if (indexCible < 0 || indexCible >= customThemes.length) return;
+
+        let idCible = customThemes[indexCible].id;
+
+        let vraiIndex1 = appData.themes.findIndex(t => t.id === id);
+        let vraiIndex2 = appData.themes.findIndex(t => t.id === idCible);
+
+        // Inversion dans la mémoire
+        let temp = appData.themes[vraiIndex1];
+        appData.themes[vraiIndex1] = appData.themes[vraiIndex2];
+        appData.themes[vraiIndex2] = temp;
+
+        try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
+        rafraichirListeGestionThemes();
+        chargerAccueil();
+    }
+
+    function toggleThemeVisibilite(id) {
+        let theme = appData.themes.find(t => t.id === id);
+        if (theme) {
+            theme.masqueAccueil = !theme.masqueAccueil;
+            try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
+            rafraichirListeGestionThemes();
+            chargerAccueil();
+        }
+    }
+
+    function choisirEmojiTheme(element, emoji) {
+        // Enregistrer l'emoji dans la case cachée
+        document.getElementById('new-theme-emoji-hidden').value = emoji;
+        
+        // Effacer la bordure de tous les emojis
+        let boutons = document.querySelectorAll('.btn-emj');
+        boutons.forEach(btn => {
+            btn.style.borderColor = 'transparent';
+        });
+        
+        // Mettre la bordure foncée sur l'emoji cliqué
+        element.style.borderColor = '#2C3E50';
+    }
+
+    function creerNouveauThemeModal() {
+        let nom = document.getElementById('new-theme-nom').value.trim();
+        if(!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
+        
+        let emojiHidden = document.getElementById('new-theme-emoji-hidden');
+        let emojiChoisi = emojiHidden ? emojiHidden.value : "📁";
+        
+        let newId = "theme_" + Date.now(); 
+        let couleurs = ["#F8BBD0", "#FFCCBC", "#FFE082", "#CFD8DC", "#C8E6C9", "#B3E5FC", "#E1BEE7", "#FFF59D", "#FFCC80", "#C5CAE9", "#B2DFDB", "#DCEDC8"];
+        let randomColor = couleurs[Math.floor(Math.random() * couleurs.length)];
+        let isHidden = document.getElementById('new-theme-hide') ? document.getElementById('new-theme-hide').checked : false;
+        
+        appData.themes.push({ 
+            id: newId, 
+            nom: nom, 
+            couleur: randomColor, 
+            emoji: emojiChoisi,
+            masqueAccueil: isHidden
+        });
+        
+        document.getElementById('new-theme-nom').value = "";
+        
+        // Remettre la palette à zéro (sur le dossier)
+        if(emojiHidden) {
+            emojiHidden.value = "📁";
+            let boutons = document.querySelectorAll('.btn-emj');
+            if(boutons.length > 0) {
+                boutons.forEach(btn => btn.style.borderColor = 'transparent');
+                boutons[0].style.borderColor = '#2C3E50';
+            }
+        }
+        if(document.getElementById('new-theme-hide')) document.getElementById('new-theme-hide').checked = false;
+        
+        try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
+        
+        rafraichirListeGestionThemes();
+        chargerAccueil();
+    }
+
+    function supprimerTheme(id, nom) {
+        if(confirm("Supprimer le thème '" + nom + "' ET TOUTES SES FICHES ?")) {
+            appData.themes = appData.themes.filter(t => t.id !== id);
+            appData.fiches = appData.fiches.filter(f => f.themeId !== id);
             localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData));
             chargerAccueil();
-            
-        } catch(erreur) {
-            alert("Erreur lors de la création du thème :\n" + erreur.message);
+            if(document.getElementById('gestion-theme-modal') && document.getElementById('gestion-theme-modal').style.display === 'flex') {
+                rafraichirListeGestionThemes();
+            }
         }
     }       
         
