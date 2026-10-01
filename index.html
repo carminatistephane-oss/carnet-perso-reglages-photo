@@ -644,7 +644,7 @@
     };
     
     try {
-        const versionPC = "1790281185";
+        const versionPC = "1790281186";
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -1234,23 +1234,26 @@
         event.target.classList.add('selected');
     }
 
-    function creerNouveauFiltre() {
-        let nom = document.getElementById('new-filtre-nom').value.trim();
-        if(!nom) { alert("Veuillez entrer un nom pour le filtre"); return; }
-        let newId = nom.toLowerCase().replace(/\s/g, '');
-        let couleurs = ["#F8BBD0", "#FFCCBC", "#FFE082", "#CFD8DC", "#C8E6C9", "#B3E5FC", "#E1BEE7", "#FFF59D", "#FFCC80", "#C5CAE9", "#B2DFDB", "#DCEDC8"];
-        let randomColor = couleurs[Math.floor(Math.random() * couleurs.length)];
-        let isHidden = document.getElementById('new-filtre-hide') ? document.getElementById('new-filtre-hide').checked : false;
-        
-        appData.filtres.push({ id: newId, emoji: emojiSelectionne, nom: nom, couleur: randomColor, masqueAccueil: isHidden });
-        document.getElementById('new-filtre-nom').value = "";
-        if(document.getElementById('new-filtre-hide')) document.getElementById('new-filtre-hide').checked = false;
-        
-        try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
-        
-        rafraichirListeGestionFiltres();
-        chargerFiltresGlobaux();
-    }
+function creerNouveauFiltre() {
+    let inputNom = document.getElementById('new-filtre-nom');
+    let nom = inputNom.value.trim();
+    if(!nom) { alert("Veuillez entrer un nom pour le filtre"); return; }
+    
+    let newItemId = nom.toLowerCase().replace(/\s/g, '');
+    let couleurs = ["#F8BBD0", "#FFCCBC", "#FFE082", "#CFD8DC", "#C8E6C9", "#B3E5FC", "#E1BEE7", "#FFF59D", "#FFCC80", "#C5CAE9", "#B2DFDB", "#DCEDC8"];
+    let randomColor = couleurs[Math.floor(Math.random() * couleurs.length)];
+    let isHidden = document.getElementById('new-filtre-hide') ? document.getElementById('new-filtre-hide').checked : false;
+
+    appData.filtres.push({ id: newItemId, emoji: emojiSelectionne, nom: nom, couleur: randomColor, masqueAccueil: isHidden });
+    
+    inputNom.value = "";
+    if(document.getElementById('new-filtre-hide')) document.getElementById('new-filtre-hide').checked = false;
+
+    try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
+
+    rafraichirListeGestionFiltres();
+    chargerFiltresGlobaux();
+}
 
     function deplacerFiltre(index, direction) {
         if (direction === 'up' && index > 0) {
@@ -1572,43 +1575,44 @@
     }
 
     function creerNouveauThemeModal() {
-        let nom = document.getElementById('new-theme-nom').value.trim();
-        if(!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
-        
-        let emojiHidden = document.getElementById('new-theme-emoji-hidden');
-        let emojiChoisi = emojiHidden ? emojiHidden.value : "📁";
-        
-        let newId = "theme_" + Date.now(); 
-        let couleurs = ["#F8BBD0", "#FFCCBC", "#FFE082", "#CFD8DC", "#C8E6C9", "#B3E5FC", "#E1BEE7", "#FFF59D", "#FFCC80", "#C5CAE9", "#B2DFDB", "#DCEDC8"];
-        let randomColor = couleurs[Math.floor(Math.random() * couleurs.length)];
-        let isHidden = document.getElementById('new-theme-hide') ? document.getElementById('new-theme-hide').checked : false;
-        
-        appData.themes.push({ 
-            id: newId, 
-            nom: nom, 
-            couleur: randomColor, 
-            emoji: emojiChoisi,
-            masqueAccueil: isHidden
-        });
-        
-        document.getElementById('new-theme-nom').value = "";
-        
-        // Remettre la palette à zéro (sur le dossier)
-        if(emojiHidden) {
-            emojiHidden.value = "📁";
-            let boutons = document.querySelectorAll('.btn-emj');
-            if(boutons.length > 0) {
-                boutons.forEach(btn => btn.style.borderColor = 'transparent');
-                boutons[0].style.borderColor = '#2C3E50';
-            }
+    let inputNom = document.getElementById('new-theme-nom');
+    let nom = inputNom.value.trim();
+    if(!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
+    
+    let emojiHidden = document.getElementById('new-theme-emoji-hidden');
+    let emojiChoisi = emojiHidden ? emojiHidden.value : "📁";
+    
+    let newId = "theme_" + Date.now();
+    let couleurs = ["#F8BBD0", "#FFCCBC", "#FFE082", "#CFD8DC", "#C8E6C9", "#B3E5FC", "#E1BEE7", "#FFF59D", "#FFCC80", "#C5CAE9", "#B2DFDB", "#DCEDC8"];
+    let randomColor = couleurs[Math.floor(Math.random() * couleurs.length)];
+    let isHidden = document.getElementById('new-theme-hide') ? document.getElementById('new-theme-hide').checked : false;
+    
+    appData.themes.push({
+        id: newId,
+        nom: nom,
+        couleur: randomColor,
+        emoji: emojiChoisi,
+        masqueAccueil: isHidden
+    });
+    
+    inputNom.value = "";
+    
+    // Remettre la palette à zéro (sur le dossier)
+    if(emojiHidden) {
+        emojiHidden.value = "📁";
+        let boutons = document.querySelectorAll('.btn-emj');
+        if(boutons.length > 0) {
+            boutons.forEach(btn => btn.style.borderColor = 'transparent');
+            boutons[0].style.borderColor = '#2C3E50';
         }
-        if(document.getElementById('new-theme-hide')) document.getElementById('new-theme-hide').checked = false;
-        
-        try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
-        
-        rafraichirListeGestionThemes();
-        chargerAccueil();
     }
+    if(document.getElementById('new-theme-hide')) document.getElementById('new-theme-hide').checked = false;
+    
+    try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
+    
+    rafraichirListeGestionThemes();
+    chargerThemesGlobaux();
+}
 
     function supprimerTheme(id, nom) {
         if(confirm("Supprimer le thème '" + nom + "' ET TOUTES SES FICHES ?")) {
