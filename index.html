@@ -270,7 +270,7 @@
             <h4 style="margin: 0 0 10px 0; color: #2C3E50;">Nouveau filtre</h4>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label>Nom du filtre</label>
-                <input type="text" id="new-filtre-nom" placeholder="Ex: Studio, Sport...">
+                <input type="text" id="new-filtre-nom" oninput="window.valeurFiltreTemp = this.value" placeholder="Ex: Studio, Sport...">
             </div>
             <label style="display: block; font-size: 11px; color: #7F8C8D; text-transform: uppercase; font-weight: bold; margin-bottom: 5px;">Choisir un Emoji</label>
             <div class="emoji-grid" id="emoji-picker"></div>
@@ -379,7 +379,7 @@
                     <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎡')">🎡</span>
                 </div>
 		
-		<input type="text" id="new-theme-nom" placeholder="Nom du nouveau thème..." style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #E5D8CD; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box;">
+		<input type="text" id="new-theme-nom" oninput="window.valeurThemeTemp = this.value" placeholder="Nom du nouveau thème..." style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #E5D8CD; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box;">
 		
                 <!-- Case cachée pour la sauvegarde -->
                 <input type="hidden" id="new-theme-emoji-hidden" value="📁">
@@ -644,7 +644,7 @@
     };
     
     try {
-        const versionPC = "1790281188";
+        const versionPC = "1790281190";
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -1235,11 +1235,11 @@
     }
 
 function creerNouveauFiltre(event) {
-    if (event) event.preventDefault(); // Empêche le mobile de vider le champ à la fermeture du clavier
+    if (event) event.preventDefault();
     
     let inputNom = document.getElementById('new-filtre-nom');
-    if (!inputNom) return;
-    let nom = inputNom.value.trim();
+    let nom = (inputNom && inputNom.value.trim()) ? inputNom.value.trim() : (window.valeurFiltreTemp || "");
+    
     if(!nom) { alert("Veuillez entrer un nom pour le filtre"); return; }
     
     let newItemId = nom.toLowerCase().replace(/\s/g, '');
@@ -1249,7 +1249,8 @@ function creerNouveauFiltre(event) {
 
     appData.filtres.push({ id: newItemId, emoji: emojiSelectionne, nom: nom, couleur: randomColor, masqueAccueil: isHidden });
     
-    inputNom.value = "";
+    if(inputNom) inputNom.value = "";
+    window.valeurFiltreTemp = ""; // On nettoie la mémoire temporaire
     if(document.getElementById('new-filtre-hide')) document.getElementById('new-filtre-hide').checked = false;
 
     try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
@@ -1581,8 +1582,8 @@ function creerNouveauThemeModal(event) {
     if (event) event.preventDefault(); // Empêche le mobile de vider le champ à la fermeture du clavier
     
     let inputNom = document.getElementById('new-theme-nom');
-    if (!inputNom) return;
-    let nom = inputNom.value.trim();
+    let nom = (inputNom && inputNom.value.trim()) ? inputNom.value.trim() : (window.valeurThemeTemp || "");
+    
     if(!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
     
     let emojiHidden = document.getElementById('new-theme-emoji-hidden');
@@ -1601,7 +1602,8 @@ function creerNouveauThemeModal(event) {
         masqueAccueil: isHidden
     });
     
-    inputNom.value = "";
+    if(inputNom) inputNom.value = "";
+    window.valeurThemeTemp = ""; // On nettoie la mémoire temporaire
     
     // Remettre la palette à zéro (sur le dossier)
     if(emojiHidden) {
