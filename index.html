@@ -644,7 +644,7 @@
     };
     
     try {
-        const versionPC = "1790281192;
+        const versionPC = "1790281192"
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -1581,12 +1581,12 @@ function creerNouveauFiltre(event) {
     }
 
 function creerNouveauThemeModal(event) {
-    if (event) event.preventDefault(); // Empêche le mobile de vider le champ à la fermeture du clavier
+    if (event) event.preventDefault();
     
     let inputNom = document.getElementById('new-theme-nom');
     let nom = (inputNom && inputNom.value.trim()) ? inputNom.value.trim() : (window.valeurThemeTemp || "");
     
-    if(!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
+    if (!nom) { alert("Veuillez entrer un nom pour le thème"); return; }
     
     let emojiHidden = document.getElementById('new-theme-emoji-hidden');
     let emojiChoisi = emojiHidden ? emojiHidden.value : "📁";
@@ -1604,33 +1604,25 @@ function creerNouveauThemeModal(event) {
         masqueAccueil: isHidden
     });
     
-    if(inputNom) inputNom.value = "";
-    window.valeurThemeTemp = ""; // On nettoie la mémoire temporaire
+    if (inputNom) inputNom.value = "";
+    window.valeurThemeTemp = "";
     
-    // Remettre la palette à zéro (sur le dossier)
-    if(emojiHidden) {
+    if (emojiHidden) {
         emojiHidden.value = "📁";
         let boutons = document.querySelectorAll('.btn-emj');
-        if(boutons.length > 0) {
+        if (boutons.length > 0) {
             boutons.forEach(btn => btn.style.borderColor = 'transparent');
             boutons[0].style.borderColor = '#2C3E50';
         }
     }
-    if(document.getElementById('new-theme-hide')) document.getElementById('new-theme-hide').checked = false;
+    
+    let hideCheckbox = document.getElementById('new-theme-hide');
+    if (hideCheckbox) hideCheckbox.checked = false;
     
     try { localStorage.setItem('R6_Database_Full_v28', JSON.stringify(appData)); } catch(e) {}
     
     fermerGestionThemes();
     chargerAccueil();
-}
-    
-    // Rafraîchir l'affichage de la modale et des thèmes globaux
-    if (typeof ouvrirGestionThemes === 'function') {
-        ouvrirGestionThemes();
-    }
-    if (typeof chargerThemesGlobaux === 'function') {
-        chargerThemesGlobaux();
-    }
 }
 
     function supprimerTheme(id, nom) {
