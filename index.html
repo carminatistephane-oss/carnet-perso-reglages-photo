@@ -378,6 +378,9 @@
                     <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🔍')">🔍</span>
                     <span class="btn-emj" style="cursor:pointer; font-size:22px; padding:2px; border:2px solid transparent; border-radius:6px;" onclick="choisirEmojiTheme(this, '🎡')">🎡</span>
                 </div>
+		
+		<input type="text" id="new-theme-nom" placeholder="Nom du nouveau thème..." style="width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #E5D8CD; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; box-sizing: border-box;">
+		
                 <!-- Case cachée pour la sauvegarde -->
                 <input type="hidden" id="new-theme-emoji-hidden" value="📁">
             </div>
@@ -641,7 +644,7 @@
     };
     
     try {
-        const versionPC = "1790281182";
+        const versionPC = "1790281185";
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
