@@ -1,7 +1,7 @@
 // ATTENTION : À chaque fois que tu modifies ton code HTML/CSS/JS, 
 // tu DOIS changer ce nom (ex: passer à 'r6-carnet-v6' puis v7, etc.)
 // Sinon, les téléphones garderont l'ancienne version en mémoire !
-const CACHE_NAME = 'r6-carnet-v42se.js'; 
+const CACHE_NAME = 'r6-carnet-v43se.js'; 
 
 // On ajoute les icônes locales pour qu'elles soient dispo hors-ligne
 const urlsToCache = [
