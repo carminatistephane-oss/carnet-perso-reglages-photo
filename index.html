@@ -734,7 +734,7 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
     };
     
     try {
-        const versionPC = "179028127"
+        const versionPC = "179028128"
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -1838,30 +1838,55 @@ function sauvegarderCarnet(isDefault = false) {
 }
 
 function restaurerCarnet(event) {
-    let fichier = event.target.files[0]; 
+    let fichier = event.target.files[0];
     if (!fichier) return;
-    
+
     let lecteur = new FileReader();
     lecteur.onload = function(e) {
-        try { 
-            let donneesImportees = JSON.parse(e.target.result); 
+        try {
+            let donneesImportees = JSON.parse(e.target.result);
             if (!donneesImportees.themes || !donneesImportees.fiches) {
                 alert("❌ ERREUR : Ce fichier ne semble pas être une sauvegarde valide des réglages.");
-                event.target.value = ""; 
+                event.target.value = "";
                 return;
             }
-            if(confirm("⚠️ Cette restauration va remplacer toutes vos fiches actuelles.\nVoulez-vous continuer ?")) {
-                localStorage.setItem('R6_Database_Full_v28', JSON.stringify(donneesImportees));
-                alert("✅ Restauration réussie ! L'application va se recharger."); 
+
+            if (confirm("⚠️️ Voulez-vous fusionner ce fichier de sauvegarde avec vos données actuelles sans rien effacer ?")) {
+                // 1. Récupérer les données locales actuelles du téléphone ou du PC
+                let donneesLocales = JSON.parse(localStorage.getItem('R6_Database_Full_v28')) || { themes: [], fiches: [] };
+
+                // 2. Fusion intelligente des thèmes par leur ID (garde tout sans écraser)
+                let themesMap = new Map();
+                if (donneesLocales.themes) donneesLocales.themes.forEach(t => themesMap.set(t.id, t));
+                if (donneesImportees.themes) donneesImportees.themes.forEach(t => themesMap.set(t.id, t));
+                let themesFusionnes = Array.from(themesMap.values());
+
+                // 3. Fusion intelligente des fiches par leur ID
+                let fichesMap = new Map();
+                if (donneesLocales.fiches) donneesLocales.fiches.forEach(f => fichesMap.set(f.id, f));
+                if (donneesImportees.fiches) donneesImportees.fiches.forEach(f => fichesMap.set(f.id, f));
+                let fichesFusionnees = Array.from(fichesMap.values());
+
+                // 4. Assemblage final propre
+                let donneesFinales = {
+                    ...donneesLocales,
+                    ...donneesImportees,
+                    themes: themesFusionnes,
+                    fiches: fichesFusionnees
+                };
+
+                // Enregistrement avec la bonne clé de stockage
+                localStorage.setItem('R6_Database_Full_v28', JSON.stringify(donneesFinales));
+                alert("✅ Fusion réussie ! L'application va se recharger.");
                 location.reload();
             } else {
-                event.target.value = ""; 
+                event.target.value = "";
             }
-        } catch (erreur) { 
-            alert("❌ ERREUR : Le fichier sélectionné est corrompu."); 
+        } catch (erreur) {
+            alert("❌ ERREUR : Le fichier sélectionné est corrompu.");
             event.target.value = "";
         }
-    }; 
+    };
     lecteur.readAsText(fichier);
 }
 
