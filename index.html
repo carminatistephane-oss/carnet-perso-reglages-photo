@@ -154,8 +154,39 @@
         }
         .nav button:active { transform: scale(0.95); }
         
-        #theme-titre { pointer-events: none; margin: 0; flex: 1; text-align: center; font-size: 24px; text-transform: uppercase; font-weight: 900; color: #2C3E50; letter-spacing: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 10px; }
-        
+/* --- TITRE DE THÈME ADAPTATIF ET MONTSERRAT --- */
+#theme-titre {
+    pointer-events: none;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: clamp(1.1rem, 4.5vw, 1.5rem); /* Taille minimum (1.1rem) garantie pour rester bien lisible ! */
+    font-weight: 700;
+    font-style: italic;
+    color: #2C3E50;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ajoute les "..." si le texte dépasse vraiment */
+    padding: 0 5px;
+}
+/* --- MONTSERRAT BOLD 700 POUR LES THÈMES (ACCUEIL) ET LES FICHES --- */
+.btn-theme span:not(.theme-count-badge) {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+}
+
+.fiche-title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+}
+
+ .badge-theme-left {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+}
+       
         .content { padding: 20px; max-width: 500px; margin: 0 auto; }
         
         .fiche-card { background: #FAF7F2; border: 2px solid #E5D8CD; border-radius: 16px; padding: 20px; margin-bottom: 25px; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 15px; }
@@ -703,7 +734,7 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
     };
     
     try {
-        const versionPC = "179028125"
+        const versionPC = "179028126"
         if (localStorage.getItem('version_r6') !== versionPC) {
             localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
