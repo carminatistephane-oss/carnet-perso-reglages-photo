@@ -734,9 +734,9 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
     };
     
     try {
-        const versionPC = "179028128"
+        const versionPC = "179028130"
         if (localStorage.getItem('version_r6') !== versionPC) {
-            localStorage.removeItem('R6_Database_Full_v28');
+            // localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
         }
 
@@ -1845,45 +1845,58 @@ function restaurerCarnet(event) {
     lecteur.onload = function(e) {
         try {
             let donneesImportees = JSON.parse(e.target.result);
-            if (!donneesImportees.themes || !donneesImportees.fiches) {
-                alert("❌ ERREUR : Ce fichier ne semble pas être une sauvegarde valide des réglages.");
-                event.target.value = "";
-                return;
-            }
+            if (!donneesImportees) throw new Error("Fichier vide ou invalide");
 
-            if (confirm("⚠️️ Voulez-vous fusionner ce fichier de sauvegarde avec vos données actuelles sans rien effacer ?")) {
-                // 1. Récupérer les données locales actuelles du téléphone ou du PC
-                let donneesLocales = JSON.parse(localStorage.getItem('R6_Database_Full_v28')) || { themes: [], fiches: [] };
+            if (confirm("⚠️ Voulez-vous fusionner ce fichier avec vos données actuelles sans rien effacer ?")) {
+                // 1. Récupération des données du téléphone ou du PC
+                let donneesLocales = JSON.parse(localStorage.getItem('R6_Database_Full_v28')) || {};
+                let donneesFinales = {};
 
-                // 2. Fusion intelligente des thèmes par leur ID (garde tout sans écraser)
-                let themesMap = new Map();
-                if (donneesLocales.themes) donneesLocales.themes.forEach(t => themesMap.set(t.id, t));
-                if (donneesImportees.themes) donneesImportees.themes.forEach(t => themesMap.set(t.id, t));
-                let themesFusionnes = Array.from(themesMap.values());
+                // 2. Trouver TOUTES les catégories (themes, fiches, filtres, c_modes, etc.)
+                let toutesLesCles = new Set([
+                    ...Object.keys(donneesLocales), 
+                    ...Object.keys(donneesImportees)
+                ]);
 
-                // 3. Fusion intelligente des fiches par leur ID
-                let fichesMap = new Map();
-                if (donneesLocales.fiches) donneesLocales.fiches.forEach(f => fichesMap.set(f.id, f));
-                if (donneesImportees.fiches) donneesImportees.fiches.forEach(f => fichesMap.set(f.id, f));
-                let fichesFusionnees = Array.from(fichesMap.values());
+                // 3. Fusion automatique et intégrale pour chaque catégorie
+                toutesLesCles.forEach(cle => {
+                    let valLocale = donneesLocales[cle];
+                    let valImportee = donneesImportees[cle];
 
-                // 4. Assemblage final propre
-                let donneesFinales = {
-                    ...donneesLocales,
-                    ...donneesImportees,
-                    themes: themesFusionnes,
-                    fiches: fichesFusionnees
-                };
+                    // Si la catégorie est une liste (comme les fiches, themes, filtres, c_modes...)
+                    if (Array.isArray(valLocale) || Array.isArray(valImportee)) {
+                        let map = new Map();
+                        let tabLocal = Array.isArray(valLocale) ? valLocale : [];
+                        let tabImport = Array.isArray(valImportee) ? valImportee : [];
 
-                // Enregistrement avec la bonne clé de stockage
+                        // Conserver les données locales
+                        tabLocal.forEach(item => {
+                            if (item && item.id) map.set(item.id, item);
+                            else map.set(JSON.stringify(item), item); // Sécurité si pas d'ID
+                        });
+                        // Ajouter/Mettre à jour avec les données importées
+                        tabImport.forEach(item => {
+                            if (item && item.id) map.set(item.id, item);
+                            else map.set(JSON.stringify(item), item);
+                        });
+
+                        donneesFinales[cle] = Array.from(map.values());
+                    } 
+                    // Si ce n'est pas une liste, on met juste à jour la valeur simple
+                    else {
+                        donneesFinales[cle] = (valImportee !== undefined && valImportee !== null) ? valImportee : valLocale;
+                    }
+                });
+
+                // 4. Enregistrement propre avec la bonne clé
                 localStorage.setItem('R6_Database_Full_v28', JSON.stringify(donneesFinales));
-                alert("✅ Fusion réussie ! L'application va se recharger.");
+                alert("✅ Méga-Fusion réussie ! L'application va se recharger.");
                 location.reload();
             } else {
                 event.target.value = "";
             }
         } catch (erreur) {
-            alert("❌ ERREUR : Le fichier sélectionné est corrompu.");
+            alert("❌ ERREUR de fusion : " + erreur.message);
             event.target.value = "";
         }
     };
