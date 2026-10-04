@@ -608,7 +608,12 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
                 <input type="text" id="edit-focale-custom" style="display:none; margin-top:5px;">
             </div>
         </div>
-
+	
+<div class="form-group">
+    <label for="reglage-notes">📝 NOTES PERSONNELLES :</label>
+    <textarea id="reglage-notes" rows="4" style="width: 100%; padding: 10px; box-sizing: border-box; border-radius: 5px; border: 1px solid #ccc; font-family: 'Montserrat', sans-serif; font-size: 15px; color: #2C3E50; resize: vertical;" placeholder="Saisissez vos notes ici... (Retours à la ligne autorisés)"></textarea>
+</div>
+	
         <div class="modal-actions">
             <button class="btn-modal-cancel" onclick="fermerModal()">Annuler</button>
             <button class="btn-modal-reset" onclick="reinitialiserFormulaire()">Réinit.</button>
@@ -764,7 +769,7 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
     };
     
     try {
-        const versionPC = "179028133"
+        const versionPC = "179028134"
         if (localStorage.getItem('version_r6') !== versionPC) {
             // localStorage.removeItem('R6_Database_Full_v28');
             localStorage.setItem('version_r6', versionPC);
@@ -1109,12 +1114,15 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
                     </div>
                     
                     <div id="options-${fiche.id}" class="options-grid" style="display: none; margin-bottom: 15px;">
-                        <div class="option-box" style="${optStyle(fiche.trepied)}">Trépied : ${fiche.trepied}</div>
-                        <div class="option-box" style="${optStyle(fiche.retard)}">Retard. : ${fiche.retard}</div>
-                        <div class="option-box" style="${optStyle(fiche.stab_boitier)}">Stab. Boit. : ${fiche.stab_boitier}</div>
-                        <div class="option-box" style="${optStyle(fiche.stab_opt)}">Stab. Opt. : ${fiche.stab_opt}</div>
-                    </div>
-                    
+    <div class="option-box" style="${optStyle(fiche.trepied)}">Trépied : ${fiche.trepied}</div>
+    <div class="option-box" style="${optStyle(fiche.retard)}">Retard. : ${fiche.retard}</div>
+    <div class="option-box" style="${optStyle(fiche.stab_boitier)}">Stab. Boit. : ${fiche.stab_boitier}</div>
+    <div class="option-box" style="${optStyle(fiche.stab_opt)}">Stab. Opt. : ${fiche.stab_opt}</div>${fiche.notes ? `<div style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.03); border-radius: 8px; border: 1px dashed ${borderColor}; text-align: left; grid-column: 1 / -1;">
+        <div style="font-size: 11px; font-weight: bold; color: #6d7b8b; margin-bottom: 6px;">📝 NOTES PERSONNELLES :</div>
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; color: #2C3E50; white-space: pre-wrap; line-height: 1.4;">${fiche.notes}</div>
+    </div>` : ''}
+</div>
+		    
                     <div style="display: flex; gap: 10px; margin-top: 15px;">
                         <div class="focale-box" style="flex: 1; background: ${borderColor}; color: #2C3E50; padding: 12px 5px; font-size: 12px;">📷 Suggérées : ${fiche.focale || '-'}</div>
                         <div style="flex: 1; display: flex; gap: 5px;">
@@ -1231,11 +1239,14 @@ h1.titre-croise .d-5 { font-weight: 800 !important; font-variation-settings: "wg
                         </div>
                         
                         <div id="options-glob-${fiche.id}" class="options-grid" style="display: none; margin-bottom: 15px;">
-                            <div class="option-box" style="${optStyle(fiche.trepied)}">Trépied : ${fiche.trepied}</div>
-                            <div class="option-box" style="${optStyle(fiche.retard)}">Retard. : ${fiche.retard}</div>
-                            <div class="option-box" style="${optStyle(fiche.stab_boitier)}">Stab. Boit. : ${fiche.stab_boitier}</div>
-                            <div class="option-box" style="${optStyle(fiche.stab_opt)}">Stab. Opt. : ${fiche.stab_opt}</div>
-                        </div>
+    <div class="option-box" style="${optStyle(fiche.trepied)}">Trépied : ${fiche.trepied}</div>
+    <div class="option-box" style="${optStyle(fiche.retard)}">Retard. : ${fiche.retard}</div>
+    <div class="option-box" style="${optStyle(fiche.stab_boitier)}">Stab. Boit. : ${fiche.stab_boitier}</div>
+    <div class="option-box" style="${optStyle(fiche.stab_opt)}">Stab. Opt. : ${fiche.stab_opt}</div>${fiche.notes ? `<div style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.03); border-radius: 8px; border: 1px dashed ${borderColor}; text-align: left; grid-column: 1 / -1;">
+        <div style="font-size: 11px; font-weight: bold; color: #6d7b8b; margin-bottom: 6px;">📝 NOTES PERSONNELLES :</div>
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 15px; color: #2C3E50; white-space: pre-wrap; line-height: 1.4;">${fiche.notes}</div>
+    </div>` : ''}
+</div>
                         
                         <div style="display: flex; gap: 10px; margin-top: 15px;">
                             <div class="focale-box" style="flex: 1; background: ${borderColor}; color: #2C3E50; padding: 12px 5px; font-size: 12px;">📷 Suggérées : ${fiche.focale || '-'}</div>
@@ -1500,6 +1511,7 @@ function creerNouveauFiltre(event) {
             document.getElementById('modal-heading').innerText = "Créer une nouvelle fiche"; 
             document.getElementById('edit-id').value = ""; 
             document.getElementById('edit-nom').value = "";
+	    document.getElementById('reglage-notes').value = "";
             
             let tActif = appData.themes.find(t => t.id === themeActifId);
             document.getElementById('edit-fiche-emoji').value = tActif ? tActif.emoji : "📁";
@@ -1529,6 +1541,9 @@ function creerNouveauFiltre(event) {
             setSelectOrCustom('mode', fiche.mode || "Av"); setSelectOrCustom('drive', fiche.drive || "Single"); setSelectOrCustom('ouverture', fiche.ouverture || ""); setSelectOrCustom('vitesse', fiche.vitesse || ""); setSelectOrCustom('iso', fiche.iso || ""); setSelectOrCustom('af', fiche.af || ""); setSelectOrCustom('collimateur', fiche.collimateur || ""); setSelectOrCustom('sujet', fiche.sujet || ""); setSelectOrCustom('mesure', fiche.mesure || ""); setSelectOrCustom('wb', fiche.wb || ""); setSelectOrCustom('temperature', fiche.temperature || "");
             document.getElementById('edit-trepied').value = fiche.trepied || "NON"; document.getElementById('edit-retard').value = fiche.retard || "NON"; document.getElementById('edit-flash').value = "NON"; document.getElementById('edit-stab_boitier').value = fiche.stab_boitier || "OUI"; document.getElementById('edit-stab_opt').value = fiche.stab_opt || "OUI"; document.getElementById('edit-filtre_nd').value = fiche.filtre_nd || "NON"; document.getElementById('edit-filtre').value = fiche.filtreId || "autre";
             setSelectOrCustom('focale', fiche.focale || "");
+	    
+	    document.getElementById('reglage-notes').value = fiche.notes || "";
+	    
             if (themeActifId === 'timelapse') { document.getElementById('edit-tl-interval').value = fiche.tl_interval || "3"; document.getElementById('edit-tl-shots').value = fiche.tl_shots || "300"; document.getElementById('edit-tl-exp').value = fiche.tl_exposure || "Fixed 1st frame"; document.getElementById('edit-tl-format').value = fiche.tl_format || "4K-U Light (3840 x 2160)"; document.getElementById('edit-tl-screen').value = fiche.tl_screen || "Activé"; document.getElementById('edit-tl-beep').value = fiche.tl_beep || "2"; calculerTimelapse(); }
             document.getElementById('edit-modal').style.display = 'flex';
         } catch(erreur) {
@@ -1553,6 +1568,9 @@ function creerNouveauFiltre(event) {
                 id: id ? Number(id) : Date.now(), themeId: finalThemeId, nom: nom, emoji: document.getElementById('edit-fiche-emoji').value, filtreId: document.getElementById('edit-filtre').value,
                 mode: getFieldValue('mode'), drive: getFieldValue('drive'), ouverture: getFieldValue('ouverture'), vitesse: getFieldValue('vitesse'), iso: getFieldValue('iso'), af: getFieldValue('af'), collimateur: getFieldValue('collimateur'), sujet: getFieldValue('sujet'), mesure: getFieldValue('mesure'), wb: getFieldValue('wb'), temperature: getFieldValue('temperature'), trepied: document.getElementById('edit-trepied').value, retard: document.getElementById('edit-retard').value, flash: document.getElementById('edit-flash').value, stab_boitier: document.getElementById('edit-stab_boitier').value, stab_opt: document.getElementById('edit-stab_opt').value, filtre_nd: document.getElementById('edit-filtre_nd').value, focale: getFieldValue('focale')
             };
+	    
+	    newData.notes = document.getElementById('reglage-notes').value;
+	    
             if (finalThemeId === 'timelapse') { newData.tl_interval = document.getElementById('edit-tl-interval').value; newData.tl_shots = document.getElementById('edit-tl-shots').value; newData.tl_exposure = document.getElementById('edit-tl-exp').value; newData.tl_format = document.getElementById('edit-tl-format').value; newData.tl_screen = document.getElementById('edit-tl-screen').value; newData.tl_beep = document.getElementById('edit-tl-beep').value; }
             
             if(id) { const index = appData.fiches.findIndex(f => f.id == id); if(index !== -1) appData.fiches[index] = newData; } else { appData.fiches.push(newData); }
